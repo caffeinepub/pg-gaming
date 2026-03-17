@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* Dark-only theme — Free Fire tactical palette */
+    --background: 0.1 0.008 265;
+    --foreground: 0.93 0.012 80;
+
+    --card: 0.13 0.01 265;
+    --card-foreground: 0.93 0.012 80;
+
+    --popover: 0.13 0.01 265;
+    --popover-foreground: 0.93 0.012 80;
+
+    /* Neon orange/amber — Free Fire signature */
+    --primary: 0.68 0.19 42;
+    --primary-foreground: 0.08 0.005 265;
+
+    --secondary: 0.2 0.015 265;
+    --secondary-foreground: 0.93 0.012 80;
+
+    --muted: 0.18 0.01 265;
+    --muted-foreground: 0.55 0.02 265;
+
+    /* Neon green accent */
+    --accent: 0.72 0.22 145;
+    --accent-foreground: 0.08 0.005 265;
+
+    --destructive: 0.62 0.22 22;
+    --destructive-foreground: 0.98 0.005 80;
+
+    --border: 0.22 0.015 265;
+    --input: 0.22 0.015 265;
+    --ring: 0.68 0.19 42;
+
+    --radius: 2px;
+
+    /* Chart colors */
+    --chart-1: 0.68 0.19 42;
+    --chart-2: 0.72 0.22 145;
+    --chart-3: 0.78 0.16 80;
+    --chart-4: 0.62 0.22 22;
+    --chart-5: 0.55 0.18 300;
+
+    /* Sidebar */
+    --sidebar: 0.11 0.008 265;
+    --sidebar-foreground: 0.93 0.012 80;
+    --sidebar-primary: 0.68 0.19 42;
+    --sidebar-primary-foreground: 0.08 0.005 265;
+    --sidebar-accent: 0.18 0.01 265;
+    --sidebar-accent-foreground: 0.93 0.012 80;
+    --sidebar-border: 0.22 0.015 265;
+    --sidebar-ring: 0.68 0.19 42;
+
+    /* Custom tokens */
+    --gold: 0.78 0.18 80;
+    --silver: 0.72 0.02 265;
+    --bronze: 0.62 0.12 50;
+    --neon-orange: 0.68 0.19 42;
+    --neon-green: 0.72 0.22 145;
+    --neon-yellow: 0.82 0.18 95;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    background-image: radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        oklch(0.22 0.06 42 / 0.25),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 40% 30% at 80% 100%,
+        oklch(0.18 0.04 265 / 0.3),
+        transparent
+      );
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .neon-glow-orange {
+    text-shadow: 0 0 20px oklch(0.68 0.19 42 / 0.8), 0 0 40px
+      oklch(0.68 0.19 42 / 0.4);
+  }
+
+  .neon-glow-green {
+    text-shadow: 0 0 20px oklch(0.72 0.22 145 / 0.8), 0 0 40px
+      oklch(0.72 0.22 145 / 0.4);
+  }
+
+  .neon-glow-gold {
+    text-shadow: 0 0 20px oklch(0.78 0.18 80 / 0.8), 0 0 40px
+      oklch(0.78 0.18 80 / 0.4);
+  }
+
+  .card-glow {
+    box-shadow: 0 0 0 1px oklch(0.68 0.19 42 / 0.3), 0 4px 24px
+      oklch(0.68 0.19 42 / 0.15);
+  }
+
+  .scanlines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      oklch(0 0 0 / 0.08) 2px,
+      oklch(0 0 0 / 0.08) 4px
+    );
+  }
+
+  .clip-tactical {
+    clip-path: polygon(
+      0 0,
+      calc(100% - 12px) 0,
+      100% 12px,
+      100% 100%,
+      12px 100%,
+      0 calc(100% - 12px)
+    );
+  }
+
+  .clip-tactical-sm {
+    clip-path: polygon(
+      0 0,
+      calc(100% - 8px) 0,
+      100% 8px,
+      100% 100%,
+      8px 100%,
+      0 calc(100% - 8px)
+    );
+  }
+
+  .border-tactical {
+    position: relative;
+  }
+
+  .border-tactical::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 12px) 0,
+      100% 12px,
+      100% 100%,
+      12px 100%,
+      0 calc(100% - 12px)
+    );
+    background: oklch(0.68 0.19 42 / 0.15);
+    z-index: -1;
+  }
+}
